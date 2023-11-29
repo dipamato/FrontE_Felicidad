@@ -24,7 +24,6 @@ import HeaderStatic from "./Components/HeaderStatic";
 import HeaderScroll from "./Components/HeaderScroll";
 import DescargaInformes from "./Components/DescargaInformes";
 import InsertarColegios from "./Components/InsertarColegios";
-import CaracterizacionOtros from "./Pages/CaracterizacionOtros";
 
 
 import Modal from "react-modal";

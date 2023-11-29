@@ -315,7 +315,7 @@ function SColAux() {
     <Container className="custom-container">
       <br />
 
-      <Form onSubmit={handleSubmitForm}>
+      <Form >
         <>
           <div className="containerFormPersona1">
             <Card className="cardFinal1">
