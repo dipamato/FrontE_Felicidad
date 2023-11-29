@@ -526,7 +526,7 @@ console.log("Recursos",Recursos) //borrar
             <option>Casado(a)</option>
             <option>Separado(a)</option>
             <option >Viudo(a)</option>
-            <option >Union Libre</option>
+            <option > Libre</option>
             <option >Otro</option>
           </Input>
           {errors.hijos && (
