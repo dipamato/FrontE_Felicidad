@@ -292,7 +292,7 @@ function SColAux() {
 
 
 
-  const handleSubmitForm = (e) => {
+  /*const handleSubmitForm = (e) => {
 
     //MODIFICANDO EL USUARIO CON EL CODIGO Y EL CORREO
     axios
@@ -310,7 +310,7 @@ function SColAux() {
     // Limpiar los campos del formulario
     setMail("");
     
-  };
+  };*/
   return (
     <Container className="custom-container">
       <br />

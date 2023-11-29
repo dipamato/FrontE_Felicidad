@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+/*import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {
@@ -25,8 +25,8 @@ function CaracterizacionOtros() {
 
   const [persona, setPersona] = useState({});
   /** Estados para manejar los datos de Persona */
-  const [genero, setGenero] = useState("");
-  const [edad, setEdad] = useState("");
+/*  const [genero, setGenero] = useState("");
+  const [edad, setEdad] = useState("");*
   const [estadoCivil, setEstadoCivil] = useState("");
   const [profesion, setProfesion] = useState("");
   const [postgrado, setPostgrado] = useState("");
@@ -38,12 +38,12 @@ function CaracterizacionOtros() {
 
   /** Fin estados datos persona */
 
-  /** Estados para los datos segun pregunta tiene hijos */
-  const [hijos, setHijos] = useState("");
+/*  /** Estados para los datos segun pregunta tiene hijos */
+/*  const [hijos, setHijos] = useState("");
   /** Fin los datos segun pregunta tiene hijos */
 
   /** En estos estados se definen la variables que almacenan y controlan las instituciones */
-  const [opcionesLista1, setOpcionesLista1] = useState([]);
+ /* const [opcionesLista1, setOpcionesLista1] = useState([]);
   const [seleccionLista1, setSeleccionLista1] = useState("");
   const [opcionesLista2, setOpcionesLista2] = useState([]);
   const [seleccionLista2, setSeleccionLista2] = useState("");
@@ -208,14 +208,14 @@ function CaracterizacionOtros() {
         Nivel_Enseñanza: nivelEnseña,
       };
 
-      axios.post(`${apiUrl}/persona`, person).then((response) => {
+   /*   axios.post(`${apiUrl}/persona`, person).then((response) => {
         console.log("Datos guardados:", response.data);
         const personA = response.data.resultado._id;
         setPersona(personA);
         console.log("idP", personA, "pguardado", persona); //borrar
 
         /** Se crea la encuesnta con los objetos ppales de esclas y preguntas */
-        axios
+/*        axios
           .post(`${apiUrl}/encuesta`, data)
           .then((response) => {
             console.log("Datos guardados:", response.data);
@@ -225,7 +225,7 @@ function CaracterizacionOtros() {
             const data = { _id: personA };
 
             /** En este metodo se crea un nuevo objeto que es independiente de las demas encuestas, en donde se tiene en cuenta todos los datos finales de la persona que va a resolver la encuesta */
-            axios
+ /*           axios
               .post(`${apiUrl}/respuestas-e/${id}`, data, {
                 headers: {
                   "Content-Type": "application/json",
@@ -245,7 +245,7 @@ function CaracterizacionOtros() {
               });
 
             // Se necesita redirigir hacia la pagina de respuestas de la encuestas con el id del objeto respuesta encuesta */
-          })
+   /*       })
           .catch((error) => {
             console.error("Error al guardar los datos:", error);
           });
@@ -262,7 +262,7 @@ function CaracterizacionOtros() {
   }, [idEncu]);
 
   /** ERRORES VALIDACION DEL FORM */
-
+/*
   const validateForm = () => {
     const newErrors = {};
     let isValid = true;
@@ -406,7 +406,7 @@ function CaracterizacionOtros() {
         </h2>
 
         {/**## SELECT INSTITUCIÓN ##**/}
-        <FormGroup className="input-group mb-3">
+  /*      <FormGroup className="input-group mb-3">
           <Input
             className="form-control"
             type="select"
@@ -464,7 +464,7 @@ function CaracterizacionOtros() {
         )}
 
  {/**## SELECT SEDE ##**/}
- <FormGroup className="input-group mb-3">
+ /*<FormGroup className="input-group mb-3">
  <Select
         options={prenda.map((x) => ({ value: x.Codigo, label: x.Codigo, nombre: x.Nombre }))}
         placeholder="Código Prenda"
@@ -484,8 +484,8 @@ function CaracterizacionOtros() {
         </FormGroup>
        
 
-        {/**## SELECT GENERO ##**/}
-        <Row className="input-group mb-3">
+        {/**## SELECT GENERO ##**/
+   /*     <Row className="input-group mb-3">
           <Col md={7}>
             <FormGroup>
               <Input
@@ -510,8 +510,8 @@ function CaracterizacionOtros() {
               {errors.genero && <FormFeedback>{errors.genero}</FormFeedback>}
             </FormGroup>
           </Col>
-          {/**## FORMULARIO EDAD ##**/}
-          <Col md={5}>
+          {/**## FORMULARIO EDAD ##**/
+     /*     <Col md={5}>
             <FormGroup>
               <Input
                 className="form-control custom-input"
@@ -539,8 +539,8 @@ function CaracterizacionOtros() {
           </Col>
         </Row>
 
-        {/**## SELECT ESTADO CIVIL ##**/}
-        <FormGroup className="input-group mb-3">
+        {/**## SELECT ESTADO CIVIL ##**/
+       /* <FormGroup className="input-group mb-3">
           <Input
             className="form-control"
             type="select"
@@ -566,8 +566,8 @@ function CaracterizacionOtros() {
           {errors.hijos && <FormFeedback>{errors.hijos}</FormFeedback>}
         </FormGroup>
 
-        {/**## SELECT HIJOS ##**/}
-        <FormGroup className="input-group mb-3">
+        {/**## SELECT HIJOS ##**/
+        /*<FormGroup className="input-group mb-3">
           <Input
             className="form-control"
             type="select"
@@ -591,8 +591,8 @@ function CaracterizacionOtros() {
           {errors.hijos && <FormFeedback>{errors.hijos}</FormFeedback>}
         </FormGroup>
 
-        {/**## SELECT FORMACION ##**/}
-        <FormGroup className="input-group mb-3">
+        {/**## SELECT FORMACION ##**/
+        /*<FormGroup className="input-group mb-3">
           <Input
             className="form-control"
             type="select"
@@ -618,8 +618,8 @@ function CaracterizacionOtros() {
           {errors.profesion && <FormFeedback>{errors.profesion}</FormFeedback>}
         </FormGroup>
 
-        {/**## SELECT POSTGRADO ##**/}
-        <FormGroup className="input-group mb-3">
+        /*{/**## SELECT POSTGRADO ##**/
+        /*<FormGroup className="input-group mb-3">
           <Input
             className="form-control"
             type="select"
@@ -646,8 +646,8 @@ function CaracterizacionOtros() {
           {errors.postgrado && <FormFeedback>{errors.postgrado}</FormFeedback>}
         </FormGroup>
 
-        {/**## SELECT EXPERIENCIA LABORAL ##**/}
-        <FormGroup className="input-group mb-3">
+        {/**## SELECT EXPERIENCIA LABORAL ##**/
+        /*<FormGroup className="input-group mb-3">
           <Input
             className="form-control custom-input"
             type="number"
@@ -678,8 +678,8 @@ laboral en rol que desempeña actualmente
           </FormText>
         </FormGroup>
 
-        {/**## AÑOS VINCULADO A LA IE ##**/}
-        <FormGroup className="input-group mb-3">
+        {/**## AÑOS VINCULADO A LA IE ##**/
+        /*<FormGroup className="input-group mb-3">
           <Input
             style={{
               backgroundColor: "#485767",
@@ -705,8 +705,8 @@ laboral en rol que desempeña actualmente
           )}
         </FormGroup>
 
-        {/**## TIPO DE VINCULACION ##**/}
-        <FormGroup className="input-group mb-3">
+        {/**## TIPO DE VINCULACION ##**/
+        /*<FormGroup className="input-group mb-3">
           <Input
             className="form-control"
             type="select"
@@ -735,8 +735,8 @@ laboral en rol que desempeña actualmente
           )}
         </FormGroup>
 
-        {/**## GRADO EN EL ESCALAFON ##**/}
-        <FormGroup className="input-group mb-3">
+        {/**## GRADO EN EL ESCALAFON ##**/
+        /*<FormGroup className="input-group mb-3">
           <Input
             className="form-control custom-input"
             type="select"
@@ -768,8 +768,8 @@ laboral en rol que desempeña actualmente
          
         </FormGroup>
 
-        {/**## GRADO EN EL QUE ENSEÑA ##**/}
-        <FormGroup className="input-group mb-3">
+        {/**## GRADO EN EL QUE ENSEÑA ##**/
+        /*<FormGroup className="input-group mb-3">
           <Input
             className="form-control"
             type="select"
@@ -812,6 +812,6 @@ laboral en rol que desempeña actualmente
       </Form>
     </Container>
   );
-}
+}*/
 
 export default CaracterizacionOtros;
