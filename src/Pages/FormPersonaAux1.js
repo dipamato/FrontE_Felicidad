@@ -67,6 +67,7 @@ function FormPersonaAux1() {
   /** numero para la rifa */
 
   const [usuarios, setUsuarios] = useState([]);
+  const [mostrarNumero, setMostrarNumero] = useState(false);
   const [numeroAutoincrementable, setNumeroAutoincrementable] = useState(1);
 
   const asignarNumeroUnico = () => {
@@ -79,10 +80,7 @@ function FormPersonaAux1() {
     return Math.floor(Math.random() * 1001) + 1;
   };
 
-  useEffect(() => {
-    // Lógica para asignar un número único después de la primera renderización
-    asignarNumeroUnico();
-  }, []);
+ 
 
   useEffect(() => {
     fetch(`${apiUrl}/personas`)
@@ -176,10 +174,10 @@ function FormPersonaAux1() {
 
             let currentTotalAutonomia;
             switch (true) {
-              case currentTotal >= 21:
+              case currentTotal >= 18:
                 currentTotalAutonomia = `Altos niveles de ${currentDimension}`;
                 break;
-              case currentTotal > 9 && currentTotal < 21:
+              case currentTotal > 9 && currentTotal < 18:
                 currentTotalAutonomia = `Nivel medio de ${currentDimension}`;
                 break;
               case currentTotal <= 9:
@@ -214,10 +212,10 @@ function FormPersonaAux1() {
             console.log(currentTotalD - (pregunta1 + pregunta2))
             switch (true) {
 
-              case (currentTotalD - (pregunta1 + pregunta2)) >= 35:
+              case (currentTotalD - (pregunta1 + pregunta2)) >= 30:
                 currentTotalDominio = `Altos niveles de ${currentDimension}`;
                 break;
-              case (currentTotalD - (pregunta1 + pregunta2)) > 15 && currentTotalD < 35:
+              case (currentTotalD - (pregunta1 + pregunta2)) > 15 && currentTotalD < 30:
                 currentTotalDominio = `Nivel medio de ${currentDimension}`;
                 break;
               case (currentTotalD - (pregunta1 + pregunta2)) <= 15:
@@ -248,10 +246,10 @@ function FormPersonaAux1() {
 
             let currentTotalCrecimiento;
             switch (true) {
-              case currentTotalC >= 42:
+              case currentTotalC >= 36:
                 currentTotalCrecimiento = `Altos niveles de ${currentDimension}`;
                 break;
-              case currentTotalC > 18 && currentTotalC < 42:
+              case currentTotalC > 18 && currentTotalC < 36:
                 currentTotalCrecimiento = `Nivel medio de ${currentDimension}`;
                 break;
               case currentTotalC <= 18:
@@ -280,13 +278,13 @@ function FormPersonaAux1() {
 
             let currentTotalRelaciones;
             switch (true) {
-              case currentTotalR >= 35:
+              case currentTotalR >= 30:
                 currentTotalRelaciones = `Altos niveles de ${currentDimension}`;
                 break;
-              case currentTotalR > 15 && currentTotalR < 35:
+              case currentTotalR > 12 && currentTotalR < 30:
                 currentTotalRelaciones = `Nivel medio de ${currentDimension}`;
                 break;
-              case currentTotalR <= 15:
+              case currentTotalR <= 12:
                 currentTotalRelaciones = `Bajos niveles de ${currentDimension}`;
                 break;
               default:
@@ -312,10 +310,10 @@ function FormPersonaAux1() {
 
             let currentTotalProposito;
             switch (true) {
-              case currentTotalP >= 28:
+              case currentTotalP >= 24:
                 currentTotalProposito = `Altos niveles de ${currentDimension}`;
                 break;
-              case currentTotalP > 12 && currentTotalP < 28:
+              case currentTotalP > 12 && currentTotalP < 24:
                 currentTotalProposito = `Nivel medio de ${currentDimension}`;
                 break;
               case currentTotalP <= 12:
@@ -343,10 +341,10 @@ function FormPersonaAux1() {
 
             let currentTotalAutoaceptacion;
             switch (true) {
-              case currentTotalAu >= 42:
+              case currentTotalAu >= 36:
                 currentTotalAutoaceptacion = `Altos niveles de ${currentDimension}`;
                 break;
-              case currentTotalAu > 18 && currentTotalAu < 42:
+              case currentTotalAu > 18 && currentTotalAu < 36:
                 currentTotalAutoaceptacion = `Nivel medio de ${currentDimension}`;
                 break;
               case currentTotalAu <= 18:
@@ -376,13 +374,13 @@ function FormPersonaAux1() {
 
             let currentTotalEmocionesOrga;
             switch (true) {
-              case currentTotalEO >= 6:
+              case currentTotalEO >= 24:
                 currentTotalEmocionesOrga = `Altos niveles de ${currentDimension}`;
                 break;
-              case currentTotalEO < 3 && currentTotalEO > 6:
+              case currentTotalEO < 12 && currentTotalEO > 24:
                 currentTotalEmocionesOrga = `Nivel medio de ${currentDimension}`;
                 break;
-              case currentTotalEO <= 3:
+              case currentTotalEO <= 12:
                 currentTotalEmocionesOrga = `Bajos niveles de ${currentDimension}`;
                 break;
               default:
@@ -558,19 +556,19 @@ function FormPersonaAux1() {
     setFruta("");
     setPapa("");
   };
-
-  /**LLAMADO A GUARDAR LA INFORMACION 2 */
   const handleSubmitForm2 = (e) => {
     e.preventDefault();
-    navigate(`/Final`);
+
+    // Asignar un nuevo número único
+    const nuevoNumero = generarNumeroUnico();
 
     const user = {
-     Rifa: numeroAutoincrementable
+      Rifa: nuevoNumero,
     };
 
     const idP = datosMatriz.Persona;
 
-    //MODIFICANDO EL USUARIO CON EL CODIGO Y EL CORREO
+    // MODIFICANDO EL USUARIO CON EL CÓDIGO Y EL CORREO
     axios
       .patch(`${apiUrl}/persona/${idP}`, user, {
         headers: {
@@ -579,6 +577,10 @@ function FormPersonaAux1() {
       })
       .then((response) => {
         console.log("Datos guardados:", response.data);
+        // Actualizar el número autoincrementable en el estado
+        setNumeroAutoincrementable(nuevoNumero);
+        // Mostrar el número
+        setMostrarNumero(true);
       })
       .catch((error) => {
         console.error("Error al guardar los datos:", error);
@@ -603,15 +605,17 @@ function FormPersonaAux1() {
         }}>
           <CardBody>
           <br/>
-      💰💸Con el fin de agradecerte por tu aporte y participación en la medición ... con el número: 
-      <span style={{fontSize:"30px", color:"red"}}>"{numeroAutoincrementable}"</span> 
-      participaras en la rifa de $500.000 
+      💰💸Con el fin de agradecerte por tu aporte y participación en la medición ...  
+      
+      participarás en la rifa de <span style={{ fontSize: "30px", color: "red" }}>$500.000 </span> 
       con las tres últimas cifras de la loteria de Boyacá el día 16 de Diciembre de 2023.💰💸
-      <br/> si deseas participar por favor dale 
-      clic al boton!!!
+      <br/>  para generar tu número, por favor dale 
+      clic al boton
       
 
       <button className="botonDownload" onClick={handleSubmitForm2}>Participar</button>
+      
+      {mostrarNumero && <p>Tu número es: <span style={{ fontSize: "40px", color: "red" }}> {numeroAutoincrementable}</span><br/>MUCHA SUERTE!!!</p> }
       </CardBody>
      </Card>
 

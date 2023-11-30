@@ -130,10 +130,10 @@ function FormPersonaAux() {
             case currentTotal >= 21:
               currentTotalAutonomia = `Altos niveles de ${currentDimension}`;
               break;
-            case currentTotal > 9 && currentTotal < 21:
+            case currentTotal > 12 && currentTotal < 21:
               currentTotalAutonomia = `Nivel medio de ${currentDimension}`;
               break;
-            case currentTotal <= 9:
+            case currentTotal <= 12:
               currentTotalAutonomia = `Bajos niveles de ${currentDimension}`;
               break;
             default:
@@ -166,10 +166,10 @@ function FormPersonaAux() {
             case (currentTotalD - (pregunta1+pregunta2))>= 35:
               currentTotalDominio = `Altos niveles de ${currentDimension}`;
               break;
-            case (currentTotalD - (pregunta1+pregunta2)) > 15 && currentTotalD < 35:
+            case (currentTotalD - (pregunta1+pregunta2)) > 20 && currentTotalD < 35:
               currentTotalDominio = `Nivel medio de ${currentDimension}`;
               break;
-            case (currentTotalD - (pregunta1+pregunta2)) <= 15:
+            case (currentTotalD - (pregunta1+pregunta2)) <= 20:
               currentTotalDominio = `Bajos niveles de ${currentDimension}`;
               break;
             default:
@@ -198,10 +198,10 @@ function FormPersonaAux() {
             case currentTotalC >= 42:
               currentTotalCrecimiento = `Altos niveles de ${currentDimension}`;
               break;
-            case currentTotalC > 18 && currentTotalC < 42:
+            case currentTotalC > 24 && currentTotalC < 42:
               currentTotalCrecimiento = `Nivel medio de ${currentDimension}`;
               break;
-            case currentTotalC <= 18:
+            case currentTotalC <= 24:
               currentTotalCrecimiento = `Bajos niveles de ${currentDimension}`;
               break;
             default:
@@ -229,10 +229,10 @@ function FormPersonaAux() {
             case currentTotalR >= 35:
               currentTotalRelaciones = `Altos niveles de ${currentDimension}`;
               break;
-            case currentTotalR > 15 && currentTotalR < 35:
+            case currentTotalR > 20 && currentTotalR < 35:
               currentTotalRelaciones = `Nivel medio de ${currentDimension}`;
               break;
-            case currentTotalR <= 15:
+            case currentTotalR <= 20:
               currentTotalRelaciones = `Bajos niveles de ${currentDimension}`;
               break;
             default:
@@ -260,10 +260,10 @@ function FormPersonaAux() {
             case currentTotalP >= 28:
               currentTotalProposito = `Altos niveles de ${currentDimension}`;
               break;
-            case currentTotalP > 12 && currentTotalP < 28:
+            case currentTotalP > 16 && currentTotalP < 28:
               currentTotalProposito = `Nivel medio de ${currentDimension}`;
               break;
-            case currentTotalP <= 12:
+            case currentTotalP <= 16:
               currentTotalProposito = `Bajos niveles de ${currentDimension}`;
               break;
             default:
@@ -290,10 +290,10 @@ function FormPersonaAux() {
             case currentTotalAu >= 42:
               currentTotalAutoaceptacion = `Altos niveles de ${currentDimension}`;
               break;
-            case currentTotalAu > 18 && currentTotalAu < 42:
+            case currentTotalAu > 24 && currentTotalAu < 42:
               currentTotalAutoaceptacion = `Nivel medio de ${currentDimension}`;
               break;
-            case currentTotalAu <= 18:
+            case currentTotalAu <= 24:
               currentTotalAutoaceptacion = `Bajos niveles de ${currentDimension}`;
               break;
             default:
@@ -319,13 +319,13 @@ function FormPersonaAux() {
 
           let currentTotalEmocionesOrga;
           switch (true) {
-            case currentTotalEO >= 6:
+            case currentTotalEO >= 28:
               currentTotalEmocionesOrga = `Altos niveles de ${currentDimension}`;
               break;
-            case currentTotalEO < 3 && currentTotalEO > 6:
+            case currentTotalEO < 16 && currentTotalEO > 28:
               currentTotalEmocionesOrga = `Nivel medio de ${currentDimension}`;
               break;
-            case currentTotalEO <= 3:
+            case currentTotalEO <= 16:
               currentTotalEmocionesOrga = `Bajos niveles de ${currentDimension}`;
               break;
             default:
@@ -348,13 +348,13 @@ function FormPersonaAux() {
 
           let currentTotalSatisfaccion;
           switch (true) {
-            case currentTotalS >= 6:
+            case currentTotalS >= 7:
               currentTotalSatisfaccion = `Altos niveles de ${currentDimension}`;
               break;
-            case currentTotalS < 6 && currentTotalS > 3:
+            case currentTotalS < 4 && currentTotalS > 7:
               currentTotalSatisfaccion = `Nivel medio de ${currentDimension}`;
               break;
-            case currentTotalS <= 3:
+            case currentTotalS <= 4:
               currentTotalSatisfaccion = `Bajos niveles de ${currentDimension}`;
               break;
             default:

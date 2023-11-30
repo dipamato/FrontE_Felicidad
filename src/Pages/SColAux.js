@@ -337,8 +337,8 @@ function SColAux() {
                    
                   }}
                 >
-                  De acuerdo a la información suministrada en la primera fase, usted accedió a
-                   participar en una segunda medición, agradecemos su interés y valoramos sus respuestas!
+                  De acuerdo a la información suministrada en la primera fase, accediste a
+                   participar en una segunda medición, agradecemos tu interés y valoramos tus respuestas!
                    
                    
                 </p>
@@ -352,7 +352,7 @@ function SColAux() {
                   }}>
                     Al finalizar podrás descargar:
                     <br/>
-                    *  Un reporte con tus resultados y recomendaciones para sostener y mejorar tu felicidad hedónica y eudaimónica.
+                    *  Un reporte con recomendaciones para el sostenimiento y mejoramiento de su felicidad en el trabajo.
                      <br/>
                  * Un número con el que, a manera de agradecimiento participarás en la rifa de  
                      <span style={{fontSize:"30px", color:"red"}}> $500.000</span>  como premio a tu cooperación!!!
@@ -364,7 +364,7 @@ function SColAux() {
                     fontWeight:"bold"
                    
                   }}>Para acceder nuevamente a la encuesta, requerimos que sea ingresado el correo que
-                   ud registró y al cual le llego de esta invitación, sólo así podremos establecer los datos comparativos.</p>
+                   registraste y al cual te llego de esta invitación, sólo así podremos establecer los datos comparativos.</p>
               </CardBody>
             </Card>
           </div>
