@@ -143,6 +143,7 @@ function FormPersonaAux1() {
   console.log("saliendorevisando", currentDatosUser);
 
   let currentTotalGeneral = 0;
+  console.log(currentTotalGeneral)
   let currentTotalGeneralH = 0;
   useEffect(() => {
     console.log(datosP)
@@ -167,9 +168,12 @@ function FormPersonaAux1() {
         switch (currentDimension) {
           case "Autonomía en el trabajo":
             console.log("totalitoa", x.Total); //borrar
-            const currentTotal = x.Total;
+            const currentTotal =x.Total;
             setTotalAutonomiaN(currentTotal)
-            currentTotalGeneral += currentTotal;
+            console.log(totalAutonomiaN)
+            console.log(currentTotalGeneral)
+            currentTotalGeneral += totalAutonomiaN;
+            console.log(currentTotalGeneral)
             setTotal(currentTotal);
 
             let currentTotalAutonomia;
@@ -205,7 +209,7 @@ function FormPersonaAux1() {
             const currentTotalD = x.Total;
             setTotalDominioN((currentTotalD - (pregunta1 + pregunta2)))
             currentTotalGeneral += currentTotalD;
-
+            console.log(currentTotalGeneral)
             setTotal(currentTotalD);
 
             let currentTotalDominio;
@@ -242,6 +246,7 @@ function FormPersonaAux1() {
             const currentTotalC = x.Total;
             setTotalCrecimientoN(currentTotalC)
             currentTotalGeneral += currentTotalC;
+            console.log(currentTotalGeneral)
             setTotal(currentTotalC);
 
             let currentTotalCrecimiento;
@@ -274,6 +279,7 @@ function FormPersonaAux1() {
             const currentTotalR = x.Total;
             currentTotalGeneral += currentTotalR;
             setTotalRelacionesN(currentTotalR)
+            console.log(currentTotalGeneral)
             setTotal(currentTotalR);
 
             let currentTotalRelaciones;
@@ -306,6 +312,7 @@ function FormPersonaAux1() {
             const currentTotalP = x.Total;
             setTotalPropositoN(currentTotalP)
             currentTotalGeneral += currentTotalP;
+            console.log(currentTotalGeneral)
             setTotal(currentTotalP);
 
             let currentTotalProposito;
@@ -337,6 +344,7 @@ function FormPersonaAux1() {
             const currentTotalAu = x.Total;
             setTotalAutoaceptacionN(currentTotalAu)
             currentTotalGeneral += currentTotalAu;
+            console.log(currentTotalGeneral)
             setTotal(currentTotalAu);
 
             let currentTotalAutoaceptacion;
@@ -435,24 +443,24 @@ function FormPersonaAux1() {
   }, [datosP]);
 
   useEffect(() => {
-    if (totalHedonica >= 42) {
+    if (totalHedonica >= 30) {
       setTotalHawH(`Altos niveles de HEDÓNICA  EN EL TRABAJO`);
-    } else if (totalHedonica > 21 && totalHedonica < 42) {
+    } else if (totalHedonica > 15 && totalHedonica < 30) {
       setTotalHawH(`Nivel medio de  HEDÓNICA EN EL TRABAJO`);
     } else {
       setTotalHawH(`Bajos niveles de HEDÓNICA  EN EL TRABAJO`);
     }
 
-    if (totalEudanamonica >= 246) {
+    if ((totalAutonomiaN+totalDominioN+totalAutoacepacionN+totalPropositoN+totalRelacionesN+totalrecimientoN) >= 174) {
       setTotalHawE(`Altos niveles de EUDAIMÓNICA  EN EL TRABAJO`);
-    } else if (totalEudanamonica > 123 && totalEudanamonica < 246) {
+    } else if ((totalAutonomiaN+totalDominioN+totalAutoacepacionN+totalPropositoN+totalRelacionesN+totalrecimientoN) > 87 && totalEudanamonica < 174) {
       setTotalHawE(`Nivel medio de  EUDAIMÓNICA EN EL TRABAJO`);
-    } else {
+    } else if ((totalAutonomiaN+totalDominioN+totalAutoacepacionN+totalPropositoN+totalRelacionesN+totalrecimientoN) <87){
       setTotalHawE(`Bajos niveles de EUDAIMÓNICA  EN EL TRABAJO`);
     }
   }, [totalEudanamonica, totalHedonica]);
 
-  console.log("totEudana", totalEudanamonica); //borrar
+  console.log("totEudana", (totalAutonomiaN+totalDominioN+totalAutoacepacionN+totalPropositoN+totalRelacionesN+totalrecimientoN)); //borrar
   /**##------Metodo que permite la decarga de la tabla en pdf-----##**/
   const tableRef = useRef(null);
 
@@ -1024,7 +1032,7 @@ function FormPersonaAux1() {
                             fontWeight: "bold",
                             textAlign: "left",
                           }}>
-                          Practicar mindfulness:</p>
+                          Practicar mindfulness:</p><br/>
                         Shonin et al. (2014) encontraron que la practica del mindfunless disminuye los niveles de estrés laboral y angustia psicológica, y aumenta la satisfacción laboral y el desempeño laboral calificado por el empleador. También se ha encontrado que el mindfunless mejora el equilibrio entre el trabajo y la vida, la calidad del sueño y la vitalidad (Allen y Kiburz, 2012).
                       </tr><br />
                       <tr>
@@ -1033,7 +1041,7 @@ function FormPersonaAux1() {
                             fontWeight: "bold",
                             textAlign: "left",
                           }}>
-                          Programa de Psicología Positiva:</p>
+                          Programa de Psicología Positiva:</p><br/>
                         "Las técnicas de intervención incluyen realizar una visita de gratitud, escribir tres cosas buenas de la vida, hacer ejercicio e identificar y utilizar sus fortalezas. Se puede encontrar una descripción detallada del programa inicial en el manual de Parks y Seligman ( 2007 )" (van Dierendonck y Lam, 2023).
                       </tr><br />
                       <tr>
@@ -1042,7 +1050,7 @@ function FormPersonaAux1() {
                             fontWeight: "bold",
                             textAlign: "left",
                           }}><br />
-                          Meditación:</p>
+                          Meditación:</p><br/>
                         Al igual que el mindfulness, las prácticas de meditación suelen consistir en la concentración en la respiración, una virtud, una palabra o un texto inspirador (Innes et al.,  2016 )
                       </tr><br />
                       <tr><p
@@ -1050,7 +1058,7 @@ function FormPersonaAux1() {
                           fontWeight: "bold",
                           textAlign: "left",
                         }}>
-                        Coaching de vida:</p>
+                        Coaching de vida:</p><br/>
                         Las sesiones se basan en el entrenamiento de pares, ejercicios prescritos y la autorreflexión. El programa generalmente implica el establecimiento de objetivos e imágenes mentales para mejorar la atención y la concentración y aumentar la confianza en uno mismo (Arkoff et al.,  2004 ; Style & Boniwell,  2010 ) (van Dierendonck y Lam, 2023).
                       </tr><br />
                       <tr><p
@@ -1058,7 +1066,7 @@ function FormPersonaAux1() {
                           fontWeight: "bold",
                           textAlign: "left",
                         }}>
-                        Escribiendo:</p>
+                        Escribiendo:</p><br/>
                         Esta intervención se basa en el trabajo fundamental de Pennebaker, que muestra que escribir sobre acontecimientos importantes de la vida tendría una influencia positiva en el bienestar de una persona (Pennebaker y Seagal,  1999). Las investigaciones han demostrado que puede ayudar a reducir el estrés, aliviar traumas, ubicar los acontecimientos de la vida en modelos mentales coherentes y proporcionar significado (Hemenover,  2003 ; Hollis et al.,  2017 ; Tarquini et al.,  2016 ).
                       </tr>
                     </td>
@@ -1141,7 +1149,7 @@ function FormPersonaAux1() {
                         textAlign: "left",
                         fontSize: '16px'
                       }}>
-                        Recomendaciones:</p>
+                        Recomendaciones:</p><br/>
 
                       <p
                         style={{
@@ -1149,15 +1157,15 @@ function FormPersonaAux1() {
                           textAlign: "left",
                           fontSize: '14px'
                         }}>
-                        Relaizar Actividad Física</p>
+                        Realizar Actividad Física: </p><br/>
                       Estudios han encontrado una fuerte relación entre el bienestar subjetivo y la actividad física. Las personas activas han mostrado mayores niveles de felicidad hedónica, autoestima y mejor estado de ánimo en comparación con las personas inactivas (Iwon, 2021; Paskova, 2010; Maher et al., 2014; Pengpid y Peltzer, 2019; Stolarska et al., 2019; An et al., 2020; Van Woudenberg et al., 2020).  Las endorfinas se liberan durante actividades deportivas (Starosta, 1995).
-                      <p
+                      <br/><p
                         style={{
                           fontWeight: "bold",
                           textAlign: "left",
                           fontSize: '14px'
                         }}><br />
-                        Práctica consciente de la gratitud</p>
+                        Práctica consciente de la gratitud: </p><br/>
                       Las personas que practican las gratitud son menos vulnerables al agotamiento laboral (Chan, 2010) y más felices. Existen programas específicos desarrollados para nutrir o cultivar la gratitud en la vida, por ejemplo el enfoque cognitivo-conductual simple de cuatro pasos para aprender la gratitud (Miller, 1995). La terapia Naikan, que es una forma japonesa de meditación (Krech, 2001 ; Reynolds, 1981). Se recomienda "llevaran un registro semanal de tres cosas buenas que les sucedieron durante la semana y registrarlas por escrito. Luego reflexionar sobre estas cosas buenas usando tres preguntas similares a las de la meditación Naikan (Krech, 2001 )
                     </td>
                     <td
