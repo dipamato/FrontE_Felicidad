@@ -352,9 +352,9 @@ function SColAux() {
                   }}>
                     Al finalizar podrás descargar:
                     <br/>
-                    *  Un reporte con recomendaciones para el sostenimiento y mejoramiento de su felicidad en el trabajo.
+                    *  Un reporte con recomendaciones para el sostenimiento y mejoramiento de tu felicidad en el trabajo.
                      <br/>
-                 * Un número con el que, a manera de agradecimiento participarás en la rifa de  
+                 * Un número con el que a manera de agradecimiento participarás en la rifa de  
                      <span style={{fontSize:"30px", color:"red"}}> $500.000</span>  como premio a tu cooperación!!!
                   </p>
               
