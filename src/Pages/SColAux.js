@@ -364,7 +364,7 @@ function SColAux() {
                     fontWeight:"bold"
                    
                   }}>Para acceder nuevamente a la encuesta, requerimos que sea ingresado el correo que
-                   registraste y al cual te llego de esta invitación, sólo así podremos establecer los datos comparativos.</p>
+                   registraste y al cual te llego  esta invitación, sólo así podremos establecer los datos comparativos.</p>
               </CardBody>
             </Card>
           </div>
