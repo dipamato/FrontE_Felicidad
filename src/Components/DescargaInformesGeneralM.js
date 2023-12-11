@@ -19,6 +19,7 @@ import * as XLSX from "xlsx";
 
 function DescargaInformesGeneral() {
   const apiUrl = process.env.REACT_APP_API_URL;
+  const _ = require('lodash');
 
   /** En estos estados se definen la variables que almacenan y controlan las instituciones */
   const [opcionesIE, setOpcionesIE] = useState([]);
@@ -127,6 +128,7 @@ console.log(datosInforme)
     
      datosInforme.map((datos)=>{
         const arrayVacio=[]
+        const arraynuevo=[]
         const arrayTotales=[]
         const arrayVacioR=[]
        arrayVacio.push(
@@ -150,6 +152,26 @@ console.log(datosInforme)
             datos.Persona.Grupo,
             )
         
+            arraynuevo.push(
+              datos.Institucion,
+              datos.Sede,
+              datos.Persona.Genero,
+              datos.Persona.EstadoCivil,
+              datos.Persona.Edad,
+              datos.Persona.Hijos,
+              datos.Persona.Profesion,
+              datos.Persona.Especializacion,
+              datos.Persona.Experiencia,
+              datos.Persona.Años_Vinculado,
+              datos.Persona.Tipo_Vinculacion,
+              datos.Persona.Grado_Escalafon,
+              datos.Persona.Nivel_Enseñanza,
+              datos.Persona.Codigo,
+              datos.Persona.Correo,
+              datos.Persona.NombreApellidos,
+              datos.Persona.Cedula,
+              datos.Persona.Grupo,
+              )
         datos.Escalas.map((escala)=>{
           
             const three=escala.Total
@@ -160,134 +182,147 @@ console.log(datosInforme)
 
         escala.Preguntas.map((valores)=>{
             arrayVacio.push(valores.Factor)
+            arraynuevo.push(valores.Factor)
             const two=[valores.Factor]
             
 
         })
         arrayVacio.push(three)
+        arraynuevo.push(three)
         })
 
         datos.RecursosCol.map((recursos)=>{
           if(recursos.Caso===1){
             arrayVacio.push(recursos.Factor)
+            arraynuevo.push(recursos.Factor)
           }else if(recursos.Caso===2){
             arrayVacio.push(recursos.Factor)
+            arraynuevo.push(recursos.Factor)
+
           }
         })
-        let arraynuevo = arrayVacio
+        
         arrayVacio.push(datos.Fecha)
-
+        
+        console.log(arrayVacio[35])
+        console.log(arraynuevo[33])
+        console.log(datos.Institucion)
         if(datos.Institucion==''){
-          var temp=arrayVacio[27]
+          
         arrayVacio[117]=[datos.Persona.Rifa]  
         arrayVacio[116]=datos.Fecha
         arrayVacio[115]="NA"
-        arrayVacio[114]=arrayVacio[85]
-        arrayVacio[113]=arrayVacio[84]
+        arrayVacio[114]=arraynuevo[85]
+        arrayVacio[113]=arraynuevo[84]
         arrayVacio[112]="NA"
         arrayVacio[111]="NA"
-        arrayVacio[110]=arrayVacio[83]
-        arrayVacio[109]=arrayVacio[82]
-        arrayVacio[108]=arrayVacio[81]
+        arrayVacio[110]=arraynuevo[83]
+        arrayVacio[109]=arraynuevo[82]
+        arrayVacio[108]=arraynuevo[81]
         arrayVacio[107]="NA"
         arrayVacio[106]="NA"
         arrayVacio[105]="NA"
-        arrayVacio[104]=arrayVacio[80]
-        arrayVacio[103]=arrayVacio[79]
-        arrayVacio[102]=arrayVacio[78]
+        arrayVacio[104]=arraynuevo[80]
+        arrayVacio[103]=arraynuevo[79]
+        arrayVacio[102]=arraynuevo[78]
         arrayVacio[101]="NA"//
-        arrayVacio[100]=arrayVacio[77]
-        arrayVacio[99]=arrayVacio[76]
-        arrayVacio[98]=arrayVacio[75]
-        arrayVacio[97]=arrayVacio[74]
-        arrayVacio[96]=arrayVacio[73]
-        arrayVacio[95]=arrayVacio[72]
+        arrayVacio[100]=arraynuevo[77]
+        arrayVacio[99]=arraynuevo[76]
+        arrayVacio[98]=arraynuevo[75]
+        arrayVacio[97]=arraynuevo[74]
+        arrayVacio[96]=arraynuevo[73]
+        arrayVacio[95]=arraynuevo[72]
         arrayVacio[94]="NA"
-        arrayVacio[93]=arrayVacio[71]
-        arrayVacio[92]=arrayVacio[70]
-        arrayVacio[91]=arrayVacio[69]
+        arrayVacio[93]=arraynuevo[71]
+        arrayVacio[92]=arraynuevo[70]
+        arrayVacio[91]=arraynuevo[69]
         arrayVacio[90]="NA"
-        arrayVacio[89]=arrayVacio[68]
+        arrayVacio[89]=arraynuevo[68]
         arrayVacio[88]="NA"
-        arrayVacio[87]=arrayVacio[67]
+        arrayVacio[87]=arraynuevo[67]
         arrayVacio[86]="NA"
-        arrayVacio[85]=arrayVacio[66]
-        arrayVacio[84]=arrayVacio[65]
+        arrayVacio[85]=arraynuevo[66]
+        arrayVacio[84]=arraynuevo[65]
         arrayVacio[83]="NA"
         arrayVacio[82]="NA"
-        arrayVacio[81]=arrayVacio[64]
-        arrayVacio[80]=arrayVacio[63]
+        arrayVacio[81]=arraynuevo[64]
+        arrayVacio[80]=arraynuevo[63]
         arrayVacio[79]="NA"
-        arrayVacio[78]=arrayVacio[62]
+        arrayVacio[78]=arraynuevo[62]
         arrayVacio[77]="NA"
 
        
-        arrayVacio[76]=arrayVacio[61]
-        arrayVacio[75]=arrayVacio[60]
+        arrayVacio[76]=arraynuevo[36]
+        arrayVacio[75]=arraynuevo[36]
 
         
 
-        arrayVacio[74]=arrayVacio[58]//total
+        arrayVacio[74]=arraynuevo[63]//total
         arrayVacio[73]="NA"
         arrayVacio[72]="NA"
-        arrayVacio[71]=arrayVacio[58]
-        arrayVacio[70]=arrayVacio[59]-arrayVacio[57]//total
-        arrayVacio[69]=arrayVacio[57]
-        arrayVacio[68]=arrayVacio[56]
-        arrayVacio[67]=arrayVacio[55]
-        arrayVacio[66]=arrayVacio[54]//totales
+        arrayVacio[71]=arraynuevo[62]
+        arrayVacio[70]=arraynuevo[37]-arraynuevo[36]//total
+        arrayVacio[69]=arraynuevo[35]
+        arrayVacio[68]=arraynuevo[34]
+        arrayVacio[67]=arraynuevo[33]
+        arrayVacio[66]=arraynuevo[49]//totales
         arrayVacio[65]="NA"
-        arrayVacio[64]=arrayVacio[53]
-        arrayVacio[63]=arrayVacio[52]
-        arrayVacio[62]=arrayVacio[51]
-        arrayVacio[61]=arrayVacio[50]
-        arrayVacio[60]=arrayVacio[49]//totales
-        arrayVacio[59]=arrayVacio[48]
+        arrayVacio[64]=arraynuevo[48]
+        arrayVacio[63]=arraynuevo[47]
+        arrayVacio[62]=arraynuevo[46]
+        arrayVacio[61]=arraynuevo[45]
+        arrayVacio[60]=arraynuevo[44]//totales
+        arrayVacio[59]=arraynuevo[43]
         arrayVacio[58]="NA"
-        arrayVacio[57]=arrayVacio[47]
-        arrayVacio[56]=arrayVacio[46]
-        arrayVacio[55]=arrayVacio[45]
-        arrayVacio[54]=arrayVacio[44]
+        arrayVacio[57]=arraynuevo[42]
+        arrayVacio[56]=arraynuevo[41]
+        arrayVacio[55]=arraynuevo[40]
+        arrayVacio[54]=arraynuevo[39]
         arrayVacio[53]="NA"
-        arrayVacio[52]=arrayVacio[43]
-        arrayVacio[51]=arrayVacio[42]//totales
-        arrayVacio[50]=arrayVacio[41]
-        arrayVacio[49]=arrayVacio[40]
-        arrayVacio[48]=arrayVacio[39]
-        arrayVacio[47]=arrayVacio[38]
+        arrayVacio[52]=arraynuevo[38]
+        arrayVacio[51]=arraynuevo[61]//totales
+        arrayVacio[50]=arraynuevo[60]
+        arrayVacio[49]=arraynuevo[59]
+        arrayVacio[48]=arraynuevo[58]
+        arrayVacio[47]=arraynuevo[57]
         arrayVacio[46]="NA"
-        arrayVacio[45]=arrayVacio[37]
+        arrayVacio[45]=arraynuevo[56]
         arrayVacio[44]="NA"
         arrayVacio[43]="NA"
         arrayVacio[42]="NA"
-        arrayVacio[41]=arrayVacio[36]
+        arrayVacio[41]=arraynuevo[24]//total
         arrayVacio[40]="NA"
-        arrayVacio[39]=arrayVacio[35]
-        arrayVacio[38]=arrayVacio[34]
-        arrayVacio[37]=arrayVacio[33]
-        arrayVacio[36]=arrayVacio[32]
-        arrayVacio[35]=arrayVacio[31]
-        arrayVacio[34]=arrayVacio[30]
-        arrayVacio[33]=arrayVacio[29]//total
-        arrayVacio[32]=arrayVacio[28]
-        arrayVacio[31]=arrayVacio[26]
-        arrayVacio[30]=arrayVacio[25]
+        arrayVacio[39]=arraynuevo[23]
+        arrayVacio[38]=arraynuevo[22]
+        arrayVacio[37]=arraynuevo[21]
+        arrayVacio[36]=arraynuevo[20]
+        arrayVacio[32]=arraynuevo[19]
+        arrayVacio[34]=arraynuevo[18]
+        arrayVacio[33]=arraynuevo[32]//total
+        arrayVacio[32]=arraynuevo[31]
+        arrayVacio[31]=arraynuevo[30]
+        arrayVacio[30]=arraynuevo[29]
         arrayVacio[29]="NA"
-        arrayVacio[28]=arrayVacio[24]
-        arrayVacio[27]=arrayVacio[23]
-        arrayVacio[26]=arrayVacio[22]
+        arrayVacio[28]=arraynuevo[28]
+        arrayVacio[27]=arraynuevo[27]
+        arrayVacio[26]=arraynuevo[26]
         arrayVacio[25]="NA"
-        arrayVacio[24]=arrayVacio[21]//total
-        arrayVacio[23]=temp
+        arrayVacio[24]=arraynuevo[53]//total
+        arrayVacio[23]=arraynuevo[25]
         arrayVacio[22]="NA"
         arrayVacio[21]="NA"
-        arrayVacio[20]=arraynuevo[20]
-        arrayVacio[19]=arraynuevo[19]
-        arrayVacio[18]=arraynuevo[18]
+        arrayVacio[20]=arraynuevo[52]
+        arrayVacio[19]=arraynuevo[51]
+        arrayVacio[18]=arraynuevo[50]
+
+        
  
         
         }
         
+        console.log(arraynuevo[50])
+        console.log(arrayVacio[18])
+
         final.push(arrayVacio)
         
 

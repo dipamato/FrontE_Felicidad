@@ -372,67 +372,72 @@ function FormPersonaAux1() {
             setTotalEudanamonica(currentTotalGeneral);
             break;
 
+            case "Satisfacción en el trabajo":
+              console.log("totalito", x.Total); //borrar
+              const currentTotalS = x.Total;
+              console.log(x.Total)
+              setTotalSatisfaccionN(currentTotalS)
+              currentTotalGeneralH += currentTotalS;
+              setTotal(currentTotalS);
+  
+              let currentTotalSatisfaccion;
+              switch (true) {
+                case currentTotalS >= 6:
+                  currentTotalSatisfaccion = `Altos niveles de ${currentDimension}`;
+                  break;
+                case currentTotalS < 6 && currentTotalS > 3:
+                  currentTotalSatisfaccion = `Nivel medio de ${currentDimension}`;
+                  break;
+                case currentTotalS <= 3:
+                  currentTotalSatisfaccion = `Bajos niveles de ${currentDimension}`;
+                  break;
+                default:
+                  break;
+              }
+              console.log("genral total", currentTotalS); //borrar
+              console.log("totD", currentTotalSatisfaccion); //borrar
+              setTotalSatisfaccion(currentTotalSatisfaccion);
+              ActualizarRespuestaCliente(
+                "647a371f916c2adcefbf4bb6",
+                currentTotalSatisfaccion
+              );
+              setTotalHedonica(currentTotalGeneralH);
+              break;
 
           case "Emociones hacia el trabajo y hacia la organización":
             console.log("totalito", x.Total); //borrar
             const currentTotalEO = x.Total;
+            console.log(x.Total)
             setTotalEmocionesOrganizacionN(currentTotalEO)
             currentTotalGeneralH += currentTotalEO;
+            console.log(currentTotalGeneralH)
             setTotal(currentTotalEO);
 
-            let currentTotalEmocionesOrga;
+            let currentTotalEmocionesOrgaN;
             switch (true) {
-              case currentTotalEO >= 24:
-                currentTotalEmocionesOrga = `Altos niveles de ${currentDimension}`;
+              case currentTotalEO > 24:
+                currentTotalEmocionesOrgaN = `Altos niveles de Emociones hacia el trabajo y hacia la organización`;
                 break;
               case currentTotalEO < 12 && currentTotalEO > 24:
-                currentTotalEmocionesOrga = `Nivel medio de ${currentDimension}`;
+                currentTotalEmocionesOrgaN = `Nivel medio de Emociones hacia el trabajo y hacia la organización`;
                 break;
               case currentTotalEO <= 12:
-                currentTotalEmocionesOrga = `Bajos niveles de ${currentDimension}`;
+                currentTotalEmocionesOrgaN = `Bajos niveles de Emociones hacia el trabajo y hacia la organización`;
                 break;
               default:
                 break;
             }
             console.log("genral total", currentTotalEO); //borrar
-            console.log("totD", currentTotalEmocionesOrga); //borrar
-            setTotalEmocionesOrganizacion(currentTotalEmocionesOrga);
+            console.log("totD", currentTotalEmocionesOrgaN); //borrar
+            setTotalEmocionesOrganizacion(currentTotalEmocionesOrgaN);
             ActualizarRespuestaCliente(
               "647a370a916c2adcefbf4bb4",
-              currentTotalEmocionesOrga
+              currentTotalEmocionesOrgaN
             );
             break;
 
-          case "Satisfacción en el trabajo":
-            console.log("totalito", x.Total); //borrar
-            const currentTotalS = x.Total;
-            setTotalSatisfaccionN(currentTotalS)
-            currentTotalGeneralH += currentTotalS;
-            setTotal(currentTotalS);
-
-            let currentTotalSatisfaccion;
-            switch (true) {
-              case currentTotalS >= 6:
-                currentTotalSatisfaccion = `Altos niveles de ${currentDimension}`;
-                break;
-              case currentTotalS < 6 && currentTotalS > 3:
-                currentTotalSatisfaccion = `Nivel medio de ${currentDimension}`;
-                break;
-              case currentTotalS <= 3:
-                currentTotalSatisfaccion = `Bajos niveles de ${currentDimension}`;
-                break;
-              default:
-                break;
-            }
-            console.log("genral total", currentTotalS); //borrar
-            console.log("totD", currentTotalSatisfaccion); //borrar
-            setTotalSatisfaccion(currentTotalSatisfaccion);
-            ActualizarRespuestaCliente(
-              "647a371f916c2adcefbf4bb6",
-              currentTotalSatisfaccion
-            );
-            setTotalHedonica(currentTotalGeneralH);
-            break;
+          
+           
           // Resto de los casos...
 
           default:
@@ -441,9 +446,10 @@ function FormPersonaAux1() {
       })
     });
   }, [datosP]);
-
+  console.log("Hedonica",(totalEmocionesOrganizacionN+totalSatisfaccionN) )
   useEffect(() => {
-    if (totalHedonica >= 30) {
+   
+    if ((totalEmocionesOrganizacionN+totalSatisfaccionN) > 30) {
       setTotalHawH(`Altos niveles de HEDÓNICA  EN EL TRABAJO`);
     } else if (totalHedonica > 15 && totalHedonica < 30) {
       setTotalHawH(`Nivel medio de  HEDÓNICA EN EL TRABAJO`);

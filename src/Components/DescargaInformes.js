@@ -16,7 +16,7 @@ import {
   FormText,
 } from "reactstrap";
 import * as XLSX from "xlsx";
-import DescargaInformesGeneral from "./DescargaInformesGeneral";
+import DescargaInformesGeneral from "./DescargaInformesGeneralM";
 
 function DescargaInformes() {
   const apiUrl = process.env.REACT_APP_API_URL;
@@ -524,7 +524,7 @@ function DescargaInformes() {
         </div>
         <div className="grid-row">
           <Col>
-            <DescargaInformesGeneral />
+            <DescargaInformesGeneral/>
           </Col>
         </div>
       </Row>
