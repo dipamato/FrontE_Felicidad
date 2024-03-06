@@ -16,7 +16,7 @@ import {
   FormText,
 } from "reactstrap";
 import * as XLSX from "xlsx";
-import DescargaInformesGeneral from "./DescargaInformesGeneralM";
+import DescargaInformesGeneral from "./DescargaInformesGeneral"; /** Cambiar a descargar informes generalM */
 
 function DescargaInformes() {
   const apiUrl = process.env.REACT_APP_API_URL;

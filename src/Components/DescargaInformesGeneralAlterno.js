@@ -17,7 +17,7 @@ import {
 } from "reactstrap";
 import * as XLSX from "xlsx";
 
-function DescargaInformesGeneral() {
+function DescargaInformesGeneralAlterno() {
   const apiUrl = process.env.REACT_APP_API_URL;
 
   /** En estos estados se definen la variables que almacenan y controlan las instituciones */
@@ -48,7 +48,6 @@ function DescargaInformesGeneral() {
   const [arrayRecursos1Numero, setArrayRecursos1Numero] = useState([]);
   const [arrayRecursos2Numero, setArrayRecursos2Numero] = useState([]);
   const [totales, setTotales] = useState([]);
-  
 
   /**fin estados Institucion */
 
@@ -96,7 +95,7 @@ function DescargaInformesGeneral() {
       consultarDatos();
     
   }, [seleccionIE, seleccionSedes]);
-console.log(datosInforme)
+console.log("informe",datosInforme)
 
   /** Consulta de las preguntas para ponerlas en el informe */
   useEffect(() => {
@@ -129,6 +128,7 @@ console.log(datosInforme)
         const arrayVacio=[]
         const arrayTotales=[]
         const arrayVacioR=[]
+        const arrayDatosValores=[]
        arrayVacio.push(
             datos.Institucion,
             datos.Sede,
@@ -150,349 +150,349 @@ console.log(datosInforme)
             datos.Persona.Grupo,
             )
         
-            datos.Escalas.map((escala)=>{
+        datos.Escalas.map((escala)=>{
           
-              const three=escala.Total
-              setTres(three)
-              arrayTotales.push(escala.Total)
-              console.log(arrayTotales)
-              setTotales(arrayTotales)
-  
-          escala.Preguntas.map((valores)=>{
-  /** Autonomia */
-            if (valores.Numero=="A4") {
+            const three=escala.Total
+            setTres(three)
+            arrayTotales.push(escala.Total)
+            console.log(arrayTotales)
+            setTotales(arrayTotales)
+
+        escala.Preguntas.map((valores)=>{
+/** Autonomia */
+          if (valores.Numero=="A4") {
+            arrayDatosValores.push(valores.Factor)
+            console.log("A4",valores.Numero,"este es ",valores.Factor)
+          }else if(valores.Numero=="A1") {
+            arrayDatosValores.push(valores.Factor)
+            console.log("A1",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="A2") {
               arrayDatosValores.push(valores.Factor)
               console.log("A4",valores.Numero,"este es ",valores.Factor)
-            }else if(valores.Numero=="A1") {
+              if (escala.Dimension=="Autonomía en el trabajo"){
+                arrayDatosValores.push(arrayDatosValores[0]+arrayDatosValores[1]+arrayDatosValores[2])
+                console.log(arrayDatosValores[3], "Total Autonomia")
+              }
+          
+/** Dominio */
+
+          }else if (valores.Numero=="A3") {
               arrayDatosValores.push(valores.Factor)
-              console.log("A1",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="A2") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("A4",valores.Numero,"este es ",valores.Factor)
-                if (escala.Dimension=="Autonomía en el trabajo"){
-                  arrayDatosValores.push(arrayDatosValores[0]+arrayDatosValores[1]+arrayDatosValores[2])
-                  console.log(arrayDatosValores[3], "Total Autonomia")
-                }
-            
-  /** Dominio */
-  
-            }else if (valores.Numero=="A3") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("A3",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="E10") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("E10",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="E11") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("E11",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="E14") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("E14",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="E6") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("E6",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="E5") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("E5",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="E4") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("E4",valores.Numero,"este es ",valores.Factor)
-                if (escala.Dimension=="Dominio Ambiental en el trabajo"){
-                  arrayDatosValores.push(arrayDatosValores[4]+arrayDatosValores[5]+
-                    arrayDatosValores[6]+arrayDatosValores[7]+arrayDatosValores[8]+
-                    arrayDatosValores[9]+arrayDatosValores[10])
-                  console.log(arrayDatosValores[11], "Total Dominio")
-                }
-  
-  /** CRECIMIENTO */
-            }else if (valores.Numero=="G16") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("G16",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="G17") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("G17",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="G18") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("G18",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="G19") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("G19",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="G20") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("G20",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="G21") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("G21",valores.Numero,"este es ",valores.Factor)
-          
-                if (escala.Dimension=="Crecimiento en el trabajo"){
-                  arrayDatosValores.push(arrayDatosValores[12]+arrayDatosValores[13]+
-                    arrayDatosValores[14]+arrayDatosValores[15]+arrayDatosValores[16]+
-                    arrayDatosValores[17])
-                  console.log(arrayDatosValores[18], "Total CRECIMIENTO")
-                }
-  
-  /** RELACIONES */
-  
-            }else if (valores.Numero=="R29") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("R29",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="R34") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("R34",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="R32") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("R32",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="R31") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("R31",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="R25") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("R25",valores.Numero,"este es ",valores.Factor)
-          
-                if (escala.Dimension=="Relaciones positivas en el trabajo"){
-                  
-                  arrayDatosValores.push(arrayDatosValores[19]+
-                    arrayDatosValores[20]+arrayDatosValores[21]+arrayDatosValores[22]+
-                    arrayDatosValores[23])
-                    console.log(arrayDatosValores[24], "Total RELACIONES")
-                }
-  
-  /**AUTOACEPTACION  */
-  
-           }else if (valores.Numero=="SA35") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("SA35",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="SA47") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("SA47",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="SA48") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("SA48",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="SA49") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("SA49",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="SA50") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("SA50",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="SA55") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("SA55",valores.Numero,"este es ",valores.Factor)
-          
-                if (escala.Dimension=="Autoaceptación en el trabajo"){
-                  arrayDatosValores.push(arrayDatosValores[25]+arrayDatosValores[26]+
-                    arrayDatosValores[27]+arrayDatosValores[28]+arrayDatosValores[29]+
-                    arrayDatosValores[30])
-                  console.log(arrayDatosValores[31], "Total AUTOACPTACION")
-                }
-  
-    /**PROPOSITO */
-  
-            }else if (valores.Numero=="P38") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("P38",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="P42") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("P42",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="P43") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("P43",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="P44") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("P44",valores.Numero,"este es ",valores.Factor)
-            
-          
-                if (escala.Dimension=="Propósito en el trabajo"){
-                  arrayDatosValores.push(arrayDatosValores[32]+arrayDatosValores[33]+
-                    arrayDatosValores[34]+arrayDatosValores[35])
-                  console.log(arrayDatosValores[36], "Total PROPOSITO")
-                }
-  
-  /** EMOCIONES 1*/
-  
-            }else if (valores.Numero=="H1") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("H1",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="H2") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("H2",valores.Numero,"este es ",valores.Factor)
-            }else if (valores.Numero=="H3") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("H3",valores.Numero,"este es ",valores.Factor)
-            
-            
-          
-                
-                  arrayDatosValores.push(arrayDatosValores[37]+arrayDatosValores[38]+
-                  arrayDatosValores[39])
-                  console.log(arrayDatosValores[40], "Total EMOCIONES 1")
-                
+              console.log("A3",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="E10") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("E10",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="E11") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("E11",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="E14") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("E14",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="E6") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("E6",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="E5") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("E5",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="E4") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("E4",valores.Numero,"este es ",valores.Factor)
+              if (escala.Dimension=="Dominio Ambiental en el trabajo"){
+                arrayDatosValores.push(arrayDatosValores[4]+arrayDatosValores[5]+
+                  arrayDatosValores[6]+arrayDatosValores[7]+arrayDatosValores[8]+
+                  arrayDatosValores[9]+arrayDatosValores[10])
+                console.log(arrayDatosValores[11], "Total Dominio")
+              }
+
+/** CRECIMIENTO */
+          }else if (valores.Numero=="G16") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("G16",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="G17") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("G17",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="G18") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("G18",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="G19") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("G19",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="G20") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("G20",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="G21") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("G21",valores.Numero,"este es ",valores.Factor)
         
-  /** EMOCIONES 2 */
-  
-            }else if (valores.Numero=="H5") {
-                arrayDatosValores.push(valores.Factor)
-                console.log("H5",valores.Numero,"este es ",valores.Factor)
-            
-            
+              if (escala.Dimension=="Crecimiento en el trabajo"){
+                arrayDatosValores.push(arrayDatosValores[12]+arrayDatosValores[13]+
+                  arrayDatosValores[14]+arrayDatosValores[15]+arrayDatosValores[16]+
+                  arrayDatosValores[17])
+                console.log(arrayDatosValores[18], "Total CRECIMIENTO")
+              }
+
+/** RELACIONES */
+
+          }else if (valores.Numero=="R29") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("R29",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="R34") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("R34",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="R32") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("R32",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="R31") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("R31",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="R25") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("R25",valores.Numero,"este es ",valores.Factor)
+        
+              if (escala.Dimension=="Relaciones positivas en el trabajo"){
+                
+                arrayDatosValores.push(arrayDatosValores[19]+
+                  arrayDatosValores[20]+arrayDatosValores[21]+arrayDatosValores[22]+
+                  arrayDatosValores[23])
+                  console.log(arrayDatosValores[24], "Total RELACIONES")
+              }
+
+/**AUTOACEPTACION  */
+
+         }else if (valores.Numero=="SA35") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("SA35",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="SA47") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("SA47",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="SA48") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("SA48",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="SA49") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("SA49",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="SA50") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("SA50",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="SA55") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("SA55",valores.Numero,"este es ",valores.Factor)
+        
+              if (escala.Dimension=="Autoaceptación en el trabajo"){
+                arrayDatosValores.push(arrayDatosValores[25]+arrayDatosValores[26]+
+                  arrayDatosValores[27]+arrayDatosValores[28]+arrayDatosValores[29]+
+                  arrayDatosValores[30])
+                console.log(arrayDatosValores[31], "Total AUTOACPTACION")
+              }
+
+  /**PROPOSITO */
+
+          }else if (valores.Numero=="P38") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("P38",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="P42") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("P42",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="P43") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("P43",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="P44") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("P44",valores.Numero,"este es ",valores.Factor)
           
-               
-                  arrayDatosValores.push(arrayDatosValores[41])
-                  console.log(arrayDatosValores[42], "Total EMOCIONES 2 ")
+        
+              if (escala.Dimension=="Propósito en el trabajo"){
+                arrayDatosValores.push(arrayDatosValores[32]+arrayDatosValores[33]+
+                  arrayDatosValores[34]+arrayDatosValores[35])
+                console.log(arrayDatosValores[36], "Total PROPOSITO")
+              }
+
+/** EMOCIONES 1*/
+
+          }else if (valores.Numero=="H1") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("H1",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="H2") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("H2",valores.Numero,"este es ",valores.Factor)
+          }else if (valores.Numero=="H3") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("H3",valores.Numero,"este es ",valores.Factor)
+          
+          
+        
+              
+                arrayDatosValores.push(arrayDatosValores[37]+arrayDatosValores[38]+
+                arrayDatosValores[39])
+                console.log(arrayDatosValores[40], "Total EMOCIONES 1")
+              
+      
+/** EMOCIONES 2 */
+
+          }else if (valores.Numero=="H5") {
+              arrayDatosValores.push(valores.Factor)
+              console.log("H5",valores.Numero,"este es ",valores.Factor)
+          
+          
+        
+             
+                arrayDatosValores.push(arrayDatosValores[41])
+                console.log(arrayDatosValores[42], "Total EMOCIONES 2 ")
+              
+/** SATISFACCION */
+
+          }else if (valores.Numero=="H8") {
+                 arrayDatosValores.push(valores.Factor)
+                console.log("H8",valores.Numero,"este es ",valores.Factor)
+
+
+
+              
+                  arrayDatosValores.push(arrayDatosValores[43])
+                  console.log(arrayDatosValores[44], "Total EMOCIONES 2 ")
                 
-  /** SATISFACCION */
-  
-            }else if (valores.Numero=="H8") {
-                   arrayDatosValores.push(valores.Factor)
-                  console.log("H8",valores.Numero,"este es ",valores.Factor)
-  
-  
-  
-                
-                    arrayDatosValores.push(arrayDatosValores[43])
-                    console.log(arrayDatosValores[44], "Total EMOCIONES 2 ")
+
                   
-  
-                    
-            } else {
-              console.log("no clasifica en ninguna")
-            }
-              
-              arrayVacio.push(valores.Factor)
-              const two=[valores.Factor]
-              
-  
-          })
-          arrayVacio.push(three)
-          })
-  
-          datos.RecursosCol.map((recursos)=>{
-            if(recursos.Caso===1){
-              arrayVacio.push(recursos.Factor)
-            }else if(recursos.Caso===2){
-              arrayVacio.push(recursos.Factor)
-            }
-          })
-          console.log("Valores",arrayDatosValores)
-          let arraynuevo = arrayVacio
-          arrayVacio.push(datos.Fecha)
-  
-          if(datos.Institucion==''){
-            var temp=arrayVacio[27]
-          arrayVacio[117]=[datos.Persona.Rifa]  
-          arrayVacio[116]=datos.Fecha
-          arrayVacio[115]="NA"
-          arrayVacio[114]=arrayVacio[85]
-          arrayVacio[113]=arrayVacio[84]
-          arrayVacio[112]="NA"
-          arrayVacio[111]="NA"
-          arrayVacio[110]=arrayVacio[83]
-          arrayVacio[109]=arrayVacio[82]
-          arrayVacio[108]=arrayVacio[81]
-          arrayVacio[107]="NA"
-          arrayVacio[106]="NA"
-          arrayVacio[105]="NA"
-          arrayVacio[104]=arrayVacio[80]
-          arrayVacio[103]=arrayVacio[79]
-          arrayVacio[102]=arrayVacio[78]
-          arrayVacio[101]="NA"//
-          arrayVacio[100]=arrayVacio[77]
-          arrayVacio[99]=arrayVacio[76]
-          arrayVacio[98]=arrayVacio[75]
-          arrayVacio[97]=arrayVacio[74]
-          arrayVacio[96]=arrayVacio[73]
-          arrayVacio[95]=arrayVacio[72]
-          arrayVacio[94]="NA"
-          arrayVacio[93]=arrayVacio[71]
-          arrayVacio[92]=arrayVacio[70]
-          arrayVacio[91]=arrayVacio[69]
-          arrayVacio[90]="NA"
-          arrayVacio[89]=arrayVacio[68]
-          arrayVacio[88]="NA"
-          arrayVacio[87]=arrayVacio[67]
-          arrayVacio[86]="NA"
-          arrayVacio[85]=arrayVacio[66]
-          arrayVacio[84]=arrayVacio[65]
-          arrayVacio[83]="NA"
-          arrayVacio[82]="NA"
-          arrayVacio[81]=arrayVacio[64]
-          arrayVacio[80]=arrayVacio[63]
-          arrayVacio[79]="NA"
-          arrayVacio[78]=arrayVacio[62]
-          arrayVacio[77]="NA"
-  
-         
-          arrayVacio[76]=arrayDatosValores[44]
-          arrayVacio[75]=arrayDatosValores[43]
-  
-          
-  
-          arrayVacio[74]=arrayDatosValores[42]//total
-          arrayVacio[73]="NA"
-          arrayVacio[72]="NA"
-          arrayVacio[71]=arrayDatosValores[41]
-          arrayVacio[70]=arrayDatosValores[40]//total
-          arrayVacio[69]=arrayDatosValores[39]
-          arrayVacio[68]=arrayDatosValores[38]
-          arrayVacio[67]=arrayDatosValores[37]
-          arrayVacio[66]=arrayDatosValores[36]//totales
-          arrayVacio[65]="NA"
-          arrayVacio[64]=arrayDatosValores[35]
-          arrayVacio[63]=arrayDatosValores[34]
-          arrayVacio[62]=arrayDatosValores[33]
-          arrayVacio[61]=arrayDatosValores[32]
-          arrayVacio[60]=arrayDatosValores[31]//totales
-          arrayVacio[59]=arrayDatosValores[30]
-          arrayVacio[58]="NA"
-          arrayVacio[57]=arrayDatosValores[29]
-          arrayVacio[56]=arrayDatosValores[28]
-          arrayVacio[55]=arrayDatosValores[27]
-          arrayVacio[54]=arrayDatosValores[26]
-          arrayVacio[53]="NA"
-          arrayVacio[52]=arrayDatosValores[25]
-          arrayVacio[51]=arrayDatosValores[24]//totales
-          arrayVacio[50]=arrayDatosValores[23]
-          arrayVacio[49]=arrayDatosValores[22]
-          arrayVacio[48]=arrayDatosValores[21]
-          arrayVacio[47]=arrayDatosValores[20]
-          arrayVacio[46]="NA"
-          arrayVacio[45]=arrayDatosValores[19]
-          arrayVacio[44]="NA"
-          arrayVacio[43]="NA"
-          arrayVacio[42]="NA"
-          arrayVacio[41]=arrayDatosValores[18]//total
-          arrayVacio[40]="NA"
-          arrayVacio[39]=arrayDatosValores[17]
-          arrayVacio[38]=arrayDatosValores[16]
-          arrayVacio[37]=arrayDatosValores[15]
-          arrayVacio[36]=arrayDatosValores[14]
-          arrayVacio[35]=arrayDatosValores[13]
-         
-          arrayVacio[34]=arrayDatosValores[12]
-          arrayVacio[33]=arrayDatosValores[11]//total
-          arrayVacio[32]=arrayDatosValores[10]
-          arrayVacio[31]=arrayDatosValores[9]
-          arrayVacio[30]=arrayDatosValores[8]
-          arrayVacio[29]="NA"
-          arrayVacio[28]=arrayDatosValores[7]
-          arrayVacio[27]=arrayDatosValores[6]
-          arrayVacio[26]=arrayDatosValores[5]
-          arrayVacio[25]="NA"
-          arrayVacio[24]=arrayDatosValores[3]//total
-          arrayVacio[23]=arrayDatosValores[4]
-          arrayVacio[22]="NA"
-          arrayVacio[21]="NA"
-          arrayVacio[20]=arrayDatosValores[2]
-          arrayVacio[19]=arrayDatosValores[1]
-          arrayVacio[18]=arrayDatosValores[0]
-   
-          
+          } else {
+            console.log("no clasifica en ninguna")
           }
-          
-          final.push(arrayVacio)
-          
-  
-          
-          })
+            
+            arrayVacio.push(valores.Factor)
+            const two=[valores.Factor]
+            
+
+        })
+        arrayVacio.push(three)
+        })
+
+        datos.RecursosCol.map((recursos)=>{
+          if(recursos.Caso===1){
+            arrayVacio.push(recursos.Factor)
+          }else if(recursos.Caso===2){
+            arrayVacio.push(recursos.Factor)
+          }
+        })
+        console.log("Valores",arrayDatosValores)
+        let arraynuevo = arrayVacio
+        arrayVacio.push(datos.Fecha)
+
+        if(datos.Institucion==''){
+          var temp=arrayVacio[27]
+        arrayVacio[117]=[datos.Persona.Rifa]  
+        arrayVacio[116]=datos.Fecha
+        arrayVacio[115]="NA"
+        arrayVacio[114]=arrayVacio[85]
+        arrayVacio[113]=arrayVacio[84]
+        arrayVacio[112]="NA"
+        arrayVacio[111]="NA"
+        arrayVacio[110]=arrayVacio[83]
+        arrayVacio[109]=arrayVacio[82]
+        arrayVacio[108]=arrayVacio[81]
+        arrayVacio[107]="NA"
+        arrayVacio[106]="NA"
+        arrayVacio[105]="NA"
+        arrayVacio[104]=arrayVacio[80]
+        arrayVacio[103]=arrayVacio[79]
+        arrayVacio[102]=arrayVacio[78]
+        arrayVacio[101]="NA"//
+        arrayVacio[100]=arrayVacio[77]
+        arrayVacio[99]=arrayVacio[76]
+        arrayVacio[98]=arrayVacio[75]
+        arrayVacio[97]=arrayVacio[74]
+        arrayVacio[96]=arrayVacio[73]
+        arrayVacio[95]=arrayVacio[72]
+        arrayVacio[94]="NA"
+        arrayVacio[93]=arrayVacio[71]
+        arrayVacio[92]=arrayVacio[70]
+        arrayVacio[91]=arrayVacio[69]
+        arrayVacio[90]="NA"
+        arrayVacio[89]=arrayVacio[68]
+        arrayVacio[88]="NA"
+        arrayVacio[87]=arrayVacio[67]
+        arrayVacio[86]="NA"
+        arrayVacio[85]=arrayVacio[66]
+        arrayVacio[84]=arrayVacio[65]
+        arrayVacio[83]="NA"
+        arrayVacio[82]="NA"
+        arrayVacio[81]=arrayVacio[64]
+        arrayVacio[80]=arrayVacio[63]
+        arrayVacio[79]="NA"
+        arrayVacio[78]=arrayVacio[62]
+        arrayVacio[77]="NA"
+
+       
+        arrayVacio[76]=arrayDatosValores[44]
+        arrayVacio[75]=arrayDatosValores[43]
+
+        
+
+        arrayVacio[74]=arrayDatosValores[42]//total
+        arrayVacio[73]="NA"
+        arrayVacio[72]="NA"
+        arrayVacio[71]=arrayDatosValores[41]
+        arrayVacio[70]=arrayDatosValores[40]//total
+        arrayVacio[69]=arrayDatosValores[39]
+        arrayVacio[68]=arrayDatosValores[38]
+        arrayVacio[67]=arrayDatosValores[37]
+        arrayVacio[66]=arrayDatosValores[36]//totales
+        arrayVacio[65]="NA"
+        arrayVacio[64]=arrayDatosValores[35]
+        arrayVacio[63]=arrayDatosValores[34]
+        arrayVacio[62]=arrayDatosValores[33]
+        arrayVacio[61]=arrayDatosValores[32]
+        arrayVacio[60]=arrayDatosValores[31]//totales
+        arrayVacio[59]=arrayDatosValores[30]
+        arrayVacio[58]="NA"
+        arrayVacio[57]=arrayDatosValores[29]
+        arrayVacio[56]=arrayDatosValores[28]
+        arrayVacio[55]=arrayDatosValores[27]
+        arrayVacio[54]=arrayDatosValores[26]
+        arrayVacio[53]="NA"
+        arrayVacio[52]=arrayDatosValores[25]
+        arrayVacio[51]=arrayDatosValores[24]//totales
+        arrayVacio[50]=arrayDatosValores[23]
+        arrayVacio[49]=arrayDatosValores[22]
+        arrayVacio[48]=arrayDatosValores[21]
+        arrayVacio[47]=arrayDatosValores[20]
+        arrayVacio[46]="NA"
+        arrayVacio[45]=arrayDatosValores[19]
+        arrayVacio[44]="NA"
+        arrayVacio[43]="NA"
+        arrayVacio[42]="NA"
+        arrayVacio[41]=arrayDatosValores[18]//total
+        arrayVacio[40]="NA"
+        arrayVacio[39]=arrayDatosValores[17]
+        arrayVacio[38]=arrayDatosValores[16]
+        arrayVacio[37]=arrayDatosValores[15]
+        arrayVacio[36]=arrayDatosValores[14]
+        arrayVacio[35]=arrayDatosValores[13]
+       
+        arrayVacio[34]=arrayDatosValores[12]
+        arrayVacio[33]=arrayDatosValores[11]//total
+        arrayVacio[32]=arrayDatosValores[10]
+        arrayVacio[31]=arrayDatosValores[9]
+        arrayVacio[30]=arrayDatosValores[8]
+        arrayVacio[29]="NA"
+        arrayVacio[28]=arrayDatosValores[7]
+        arrayVacio[27]=arrayDatosValores[6]
+        arrayVacio[26]=arrayDatosValores[5]
+        arrayVacio[25]="NA"
+        arrayVacio[24]=arrayDatosValores[3]//total
+        arrayVacio[23]=arrayDatosValores[4]
+        arrayVacio[22]="NA"
+        arrayVacio[21]="NA"
+        arrayVacio[20]=arrayDatosValores[2]
+        arrayVacio[19]=arrayDatosValores[1]
+        arrayVacio[18]=arrayDatosValores[0]
+ 
+        
+        }
+        
+        final.push(arrayVacio)
+        
+
+        
+        })
 
         datosEscalas.map((datos)=>{
           const ArrayAutonomia=[]
@@ -979,4 +979,4 @@ console.log(totales)
   );
 }
 
-export default DescargaInformesGeneral;
+export default DescargaInformesGeneralAlterno;
