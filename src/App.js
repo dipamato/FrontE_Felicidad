@@ -106,7 +106,7 @@ function App() {
           <Route exact path="/CrearI" element={<InsertarColegios />} />
          {/* <Route exact path="/" element={<Ppal />} />*/}
          <Route exact path="/" element={<SColAux/>} />
-          <Route exact path="/S878720h4PP" element={<DescargaInformes />} />
+          <Route exact path="/S878720h4PP" element={<DescargaInformesGeneral />} />
           {/*<Route exact path="/Choose" element={<SCol />} />
           <Route exact path="/Choose1" element={<Caracterizacion />} />
           <Route exact path="/Choose2" element={<CaracterizacionSena1 />} />
