@@ -129,6 +129,7 @@ console.log(datosInforme)
         const arrayVacio=[]
         const arrayTotales=[]
         const arrayVacioR=[]
+        const arrayDatosValores=[]
        arrayVacio.push(
             datos.Institucion,
             datos.Sede,

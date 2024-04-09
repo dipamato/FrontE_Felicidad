@@ -31,6 +31,7 @@ import CaracterizacionSena from "./Pages/CaracterizacionSena";
 import CaracterizacionSena1 from "./Pages/CaracterizacionSena1";
 import SColAux from "./Pages/SColAux";
 import FormPersonaAux1 from "./Pages/FormPersonaAux1";
+import DescargaInformesGeneral from "./Components/DescargaInformesGeneral";
 
 
 function App() {
